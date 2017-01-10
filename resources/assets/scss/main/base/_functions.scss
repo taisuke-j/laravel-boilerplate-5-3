@@ -1,0 +1,26 @@
+// --------------------------------------------------------------------------------------------
+// Layout Calculations
+// --------------------------------------------------------------------------------------------
+
+// Strips unit
+@function strip-unit($value) {
+	@if type-of($value) == 'number' and not unitless($value) {
+		@return $value / ($value * 0 + 1);
+	}
+	@return $value;
+}
+
+// Responsive spacing
+@function space($range: 'medium', $size: 'medium') {
+	@return map-get(map-get($responsive-space, $range), $size);
+}
+
+// Content padding
+@function content-padding($range: 'medium', $axis: 'all') {
+	@if $axis == 'all' {
+		$padding: map-get(map-get($content-padding, 'y'), $range) + ' ' + map-get(map-get($content-padding, 'x'), $range);
+		@return $padding;
+	} @else {
+		@return map-get(map-get($content-padding, $axis), $range);
+	}
+}

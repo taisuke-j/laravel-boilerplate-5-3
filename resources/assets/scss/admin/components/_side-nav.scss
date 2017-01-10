@@ -1,0 +1,79 @@
+.side-nav {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 500;
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding-top: $space-large;
+	max-height: 100%;
+	background: #222;
+	[name="side-nav"]:checked ~ & {
+		display: block;
+	}
+	@include min-medium {
+		display: block;
+		width: 160px;
+		height: 100%;
+		padding-top: $top-nav-height + $space;
+	}
+	> ul {
+		> li {
+			position: relative;
+			> a {
+				display: block;
+				padding: $space-small;
+				color: #ccc;
+				font-size: 14px;
+				border-bottom: 1px solid transparent;
+				@at-root {
+					#{ selector-replace(&, 'li', 'li.current') } {
+						background: #111;
+						color: #fff;
+					}
+				}
+				&:after {
+					content: '';
+					position: absolute;
+					left: $space-small;
+					bottom: 0;
+					width: calc(100% - #{$space-small * 2});
+					height: 1px;
+					background: #444;
+					@at-root {
+						#{ selector-replace(&, 'li', 'li:last-of-type') } {
+							display: none;
+						}
+						#{ selector-replace(&, 'li', 'li.current') } {
+							left: $space-small;
+							bottom: 100%;
+							background: #111;
+						}
+					}
+				}
+				i {
+					margin-right: $space-xsmall;
+				}
+			}
+		}
+	}
+	> ul > li > ul {
+		padding-bottom: $space-xsmall;
+		background: #111;
+		a {
+			display: block;
+			padding: $space-xsmall $space-small $space-xsmall $space-larger;
+			background: #111;
+			color: #ccc;
+			font-size: 12px;
+		}
+		li.current a {
+			color: #fff;
+		}
+		ul a {
+			padding: 2px $space-small 2px $space-large;
+		}
+	}
+}

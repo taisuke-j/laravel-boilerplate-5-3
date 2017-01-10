@@ -1,0 +1,24 @@
+// --------------------------------------------------------------------------------------------
+// Variables used for vendor files
+// --------------------------------------------------------------------------------------------
+
+// Font Awesome
+$fa-font-path: '../fonts/font-awesome' !default;
+
+// Bourbon Neat
+@import 'neat/neat-helpers';
+
+$disable-warnings: true;
+$column: $space;
+$gutter: $space;
+$max-width: $max-site-width;
+
+$min-small: new-breakpoint(min-width $breakpoint-small 12);
+$min-medium: new-breakpoint(min-width $breakpoint-medium 12);
+$min-large: new-breakpoint(min-width $breakpoint-large 12);
+$min-xlarge: new-breakpoint(min-width $breakpoint-xlarge 12);
+
+$max-small: new-breakpoint(max-width $breakpoint-small 12);
+$max-medium: new-breakpoint(max-width $breakpoint-medium 12);
+$max-large: new-breakpoint(max-width $breakpoint-large 12);
+$max-xlarge: new-breakpoint(max-width $breakpoint-xlarge 12);

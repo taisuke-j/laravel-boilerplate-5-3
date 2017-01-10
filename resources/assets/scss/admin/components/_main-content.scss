@@ -1,0 +1,309 @@
+// --------------------------------------------------------------------------------------------
+// Main Content
+// --------------------------------------------------------------------------------------------
+
+main {
+	@include min-medium {
+		padding-left: 160px;
+	}
+	.content {
+		@include min-xlarge {
+			@include span-columns(9, block-collapse);
+		}
+		ul {
+			list-style-type: disc;
+			line-height: $content-line-height;
+			margin-bottom: $space;
+			padding-left: $space-larger;
+			&:last-child { margin-bottom: 0; }
+		}
+		ol {
+			list-style-type: decimal;
+			line-height: $content-line-height;
+			margin-bottom: $space;
+			padding-left: $space-larger;
+			&:last-child { margin-bottom: 0; }
+		}
+	}
+	.sidebar {
+		@include content-padding('small');
+		@include min-medium {
+			@include content-padding;
+		}
+		@include min-large {
+			@include content-padding('large');
+		}
+		@include min-xlarge {
+			@include span-columns(3);
+			padding: content-padding('medium', 'y') content-padding('small', 'x');
+		}
+	}
+}
+
+// Flash Message
+.flash-message {
+	padding-top: $top-nav-height - 1;
+	background: map-get($green, lightest);
+	color: map-get($green, main);
+	.has-errors &,
+	&.error {
+		background: map-get($red, lightest);
+		color: map-get($red, main);
+	}
+}
+.flash-message-content {
+	padding: $space-small content-padding('small', 'x');
+	@include min-medium {
+		padding: $space-small content-padding('medium', 'x') + 160;
+	}
+	@include min-large {
+		padding: $space-small content-padding('large', 'x') + 160;
+	}
+}
+
+// Go back link
+.go-back {
+	margin-bottom: $space;
+	@include min-medium {
+		margin-bottom: $space-large;
+	}
+	a {
+		color: map-get($primary-color, light);
+		transition: opacity $transition-speed;
+		&:hover {
+			opacity: .7;
+		}
+	}
+	i {
+		margin-right: $space-xsmall;
+		font-size: 10px;
+		vertical-align: middle;
+	}
+	span {
+		font-size: 13px;
+		vertical-align: middle;
+	}
+}
+
+// List table
+.id-field-heading,
+.edit-field-heading {
+	width: 110px;
+}
+.unfriend-field-heading {
+	width: 70px;
+}
+.status-field {
+	#{&}-active {
+		color: map-get($green, main);
+	}
+	#{&}-inactive {
+		color: map-get($red, main);
+	}
+}
+.edit-field {
+	form {
+		display: inline-block;
+	}
+	a {
+		display: inline-block;
+		padding: 0 $space-xsmall;
+		i {
+			font-size: 16px;
+			line-height: 16px;
+		}
+	}
+}
+.field-label {
+	color: #000;
+	@include min-medium {
+		display: none;
+	}
+}
+.success-field span {
+	color: #56d66b;
+}
+.error-field span {
+	color: #ff6666;
+}
+
+main .content .pagination {
+	list-style: none;
+	margin-top: $space;
+	padding: 0;
+	text-align: center;
+	li {
+		display: inline-block;
+		span, a {
+			padding: 2px;
+		}
+	}
+}
+.add-button {
+	margin-top: $space-large;
+}
+
+// Form
+.login-form-wrapper {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 100%;
+	max-height: 100%;
+	padding: $space;
+	overflow-x: hidden;
+	overflow-y: auto;
+	transform: translate(-50%, -50%);
+	@media (min-width: 540px) {
+		width: 540px;
+	}
+	@media (max-height: 540px) {
+		position: static;
+		margin: 0 auto;
+		transform: translate(0, 0);
+	}
+}
+.vertical-form-row {
+	margin-bottom: $space-small;
+	@include min-medium {
+		margin-bottom: 0;
+	}
+	&:not(.no-label) {
+		@include table-row;
+	}
+	&.no-label-row,
+	&.button-row,
+	&.button-row-larger {
+		@include table-row($shift: 150px);
+	}
+	&.button-row {
+		margin-top: $space;
+	}
+	&.button-row-larger{
+		margin-top: $space-larger;
+	}
+	.label-column {
+		@include table-column();
+		@include min-medium {
+			width: 150px;
+			padding: $space-small $space-small $space-small 0;
+		}
+		.login-form & {
+			vertical-align: top;
+		}
+		label {
+			display: block;
+			line-height: $content-line-height;
+			cursor: pointer;
+			color: $content-color-light;
+			@include min-medium {
+				color: $content-color;
+			}
+		}
+	}
+	.field-column {
+		@include table-column;
+		@include min-medium {
+			padding: $space-small 0;
+		}
+		form:not(.login-form) & #{$input} {
+			@include min-medium {
+				width: 50%;
+				margin-bottom: 0;
+			}
+		}
+		&.status-field {
+			#{&}-active {
+				color: map-get($green, main);
+			}
+			#{&}-inactive {
+				color: map-get($red, main);
+			}
+		}
+		&.select-field.repeatable-field {
+			.repeatable {
+				margin-bottom: $space-small;
+			}
+			.Select {
+				display: inline-block;
+				width: 250px;
+				vertical-align: middle;
+			}
+			.remove-button {
+				margin-left: $space-small;
+				font-size: 14px;
+				color: map-get($red, light);
+				&:hover {
+					color: map-get($red, lighter);
+				}
+			}
+		}
+		[type="checkbox"] {
+			margin-right: $space-xsmall;
+		}
+		.error-text {
+			color: map-get($red, main);
+			form:not(.login-form) & {
+				@include min-medium {
+					display: inline-block;
+					max-width: calc(50% - #{$space-larger});
+					margin-left: $space-larger;
+					padding: $space-small 0;
+					vertical-align: middle;
+					white-space:nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+			}
+		}
+	}
+	&.button-row,
+	&.button-row-larger {
+		[type="submit"] {
+			margin-right: $space;
+		}
+		a {
+			font-size: 14px;
+			color: map-get($primary-color, main);
+			&:hover {
+				color: map-get($primary-color, light);
+			}
+			i {
+				margin-right: $space-xsmall;
+				font-size: 16px;
+				vertical-align: middle;
+			}
+			span {
+				font-size: 13px;
+				vertical-align: middle;
+			}
+		}
+	}
+}
+
+main .content .checklist {
+	list-style: none;
+	padding-left: 0;
+	li {
+		margin-bottom: $space-xsmall;
+		[type="checkbox"] {
+			margin-right: $space-xsmall;
+			vertical-align: middle;
+		}
+		a {
+			text-decoration: underline;
+			vertical-align: middle;
+		}
+		.remove-button {
+			margin-left: $space-small;
+		}
+	}
+}
+
+// Tinymce
+#formUpload {
+	display: none;
+}
+.mce-window .mce-btn button {
+	padding: 6px 8px;
+}

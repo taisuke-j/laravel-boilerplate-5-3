@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+BACKUP_PATH=
+
+NOW=$(date +'%Y_%m_%d')
+FILE=$BACKUP_PATH$NOW'.sql'
+
+/usr/bin/mysqldump -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE > $FILE

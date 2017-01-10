@@ -1,0 +1,37 @@
+// --------------------------------------------------------------------------------------------
+// Helper classes
+// --------------------------------------------------------------------------------------------
+
+// Display
+.show { display: block !important; }
+.hide { display: none !important; }
+.screen-reader-text { display: none !important; }
+.print-hide {
+	@media print { display: none !important; }
+}
+.print-show {
+	display: none !important;
+	@media print { display: block !important; }
+}
+.inline { display: inline !important; }
+.inline-block { display: inline-block !important; }
+
+// Layout
+.float-left { float: left; }
+.float-right { float: right; }
+.float-center {
+	margin-left: auto;
+	margin-right: auto;
+}
+.clearfix { @include clearfix; }
+.clear { clear: both; }
+.no-margin { margin: 0; }
+
+// Text
+.underlined { text-decoration: underline; }
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.vertical-top { vertical-align: top }
+.vertical-middle { vertical-align: middle }
+.vertical-bottom { vertical-align: bottom }

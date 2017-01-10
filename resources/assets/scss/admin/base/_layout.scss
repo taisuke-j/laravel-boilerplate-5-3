@@ -1,0 +1,49 @@
+// --------------------------------------------------------------------------------------------
+// Overall layout and layout helpers
+// --------------------------------------------------------------------------------------------
+
+// Container
+.container {
+	@include clearfix;
+	max-width: $max-site-width;
+	margin: 0 auto $space-smaller;
+	&:last-child { margin-bottom: 0; }
+	&.fluid { max-width: 100%; }
+}
+
+// Content area
+.content {
+	@include clearfix;
+	background: $content-bgc;
+	@include content-padding('small');
+	@include min-medium {
+		@include content-padding;
+	}
+	@include min-large {
+		@include content-padding('large');
+	}
+}
+
+// Table grid
+.table-columns {
+	@include table-row($shift: $space-large);
+}
+.table-column, .gutter {
+	@include table-column;
+}
+
+// Responsive video
+.responsive-video {
+	position: relative;
+	height: 0;
+	overflow: hidden;
+	margin-bottom: $space-smaller;
+	padding-bottom: 9 / 16 * 100%;
+	& iframe, & object, & embed {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}

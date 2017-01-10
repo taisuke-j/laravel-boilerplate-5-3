@@ -1,0 +1,165 @@
+// --------------------------------------------------------------------------------------------
+// General
+// --------------------------------------------------------------------------------------------
+
+// Simple media query helpers
+@mixin min-small() {
+	@media (min-width: $breakpoint-small) {
+		@content;
+	}
+}
+@mixin min-medium() {
+	@media (min-width: $breakpoint-medium) {
+		@content;
+	}
+}
+@mixin min-large() {
+	@media (min-width: $breakpoint-large) {
+		@content;
+	}
+}
+@mixin min-xlarge() {
+	@media (min-width: $breakpoint-xlarge) {
+		@content;
+	}
+}
+@mixin max-small() {
+	@media (max-width: $breakpoint-smal - 1) {
+		@content;
+	}
+}
+@mixin max-medium() {
+	@media (max-width: $breakpoint-medium - 1) {
+		@content;
+	}
+}
+@mixin max-large() {
+	@media (max-width: $breakpoint-large - 1) {
+		@content;
+	}
+}
+@mixin max-xlarge() {
+	@media (max-width: $breakpoint-xlarge - 1) {
+		@content;
+	}
+}
+
+
+// --------------------------------------------------------------------------------------------
+// Typography
+// --------------------------------------------------------------------------------------------
+
+// Font size
+@mixin heading-font-size($heading: 'h1', $range: 'medium') {
+	font-size: map-get(map-get($heading-font-size, $heading), $range);
+}
+
+// Placeholder
+@mixin placeholder {
+	::-webkit-input-placeholder {
+		@content;
+	}
+	:-moz-placeholder {
+		@content;
+	}
+	::-moz-placeholder {
+		@content;
+	}
+	:-ms-input-placeholder {
+		@content;
+	}
+	.placeholder {
+		@content;
+	}
+}
+
+
+// --------------------------------------------------------------------------------------------
+// Layout
+// --------------------------------------------------------------------------------------------
+
+// Macro clearfix
+@mixin clearfix {
+	&:before, &:after{
+		display: table;
+		content: '';
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+// Content padding
+@mixin content-padding($range: 'medium') {
+	padding: unquote(content-padding($range, 'all'));
+}
+
+// Border
+@mixin border($width: $site-border-width, $color: $content-bdc, $style: solid) {
+	border: strip-unit($width) + px $style $color;
+}
+
+// Table columns
+@mixin table-row($breakpoint: $breakpoint-medium, $gutter: 0, $shift: 0, $fill: true) {
+	@media (min-width: $breakpoint) {
+		display: table;
+		table-layout: fixed;
+		border-collapse: separate;
+		border-spacing: $gutter;
+		padding-left: $shift;
+		@if $fill and $gutter > 0 {
+			margin-left: -#{$gutter};
+			width: calc(100% + #{$gutter * 2});
+		} @else {
+			width: 100%;
+		}
+	}
+}
+
+@mixin table-column($vertical-align: 'middle', $breakpoint: $breakpoint-medium) {
+	@media (min-width: $breakpoint) {
+		display: table-cell;
+		vertical-align: #{$vertical-align};
+	}
+}
+
+
+// --------------------------------------------------------------------------------------------
+// Style sets
+// --------------------------------------------------------------------------------------------
+
+@mixin button-style (
+	$bgc: map-get($primary-color, main),
+	$bgc-hover: map-get($primary-color, light),
+	$color: $white,
+	$color-hover: $white,
+	$radius: $radius) {
+
+	display: inline-block;
+	line-height: $input-line-height;
+	margin-bottom: $space-xsmall;
+	padding: ($space-small - $input-border-width) $space;
+	@include border($color: $bgc);
+	border-radius: $radius;
+	background: $bgc;
+	color: $color;
+	outline-offset: 0;
+	text-shadow: none;
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	transition: border-color $transition-speed, background $transition-speed, color $transition-speed;
+	&:hover {
+		border-color: $bgc-hover;
+		background: $bgc-hover;
+		color: $color-hover;
+	}
+	&[disabled] {
+		opacity: .65;
+		&:hover {
+			border-color: $bgc;
+			background: $bgc;
+		}
+	}
+}

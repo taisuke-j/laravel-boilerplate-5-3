@@ -1,0 +1,86 @@
+// --------------------------------------------------------------------------------------------
+// Styles for HTML Modal (jQuery plugin)
+// --------------------------------------------------------------------------------------------
+
+// Variables
+$modal-breakpoint: 600px !default;
+$modal-space: 20px !default;
+$modal-background: #fff !default;
+$modal-transition-speed: .4s !default;
+
+// Mixins
+@mixin clearfix {
+	&:before, &:after{
+		display: table;
+		content: '';
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+// General
+body { overflow-x: hidden; }
+
+
+// Modal elements
+.html-modal-background {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1000;
+	visibility: hidden;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .7);
+	cursor: pointer;
+	&.faded-in {
+		visibility: visible;
+		opacity: 1;
+		transition: opacity $modal-transition-speed;
+	}
+	&.faded-out {
+		visibility: visible;
+		transition: opacity $modal-transition-speed;
+	}
+}
+.html-modal {
+	position: fixed;
+	left: 9000px;
+	top: 50%;
+	z-index: 1100;
+	opacity: 0;
+	width: calc(100% - #{$modal-space * 2});
+	max-height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background: $modal-background;
+	-webkit-font-smoothing: subpixel-antialiased;
+	transition: opacity $modal-transition-speed * 2;
+	@include clearfix;
+	@media (min-width: $modal-breakpoint) {
+		width: $modal-breakpoint - $modal-space * 2;
+		margin-left: -#{($modal-breakpoint - $modal-space * 2) / 2};
+	}
+	&.faded-in {
+		left: $modal-space;
+		opacity: 1;
+		transition: opacity $modal-transition-speed * 2;
+		@media (min-width: $modal-breakpoint) {
+			left: 50%;
+		}
+	}
+	&.faded-out {
+		left: $modal-space;
+		opacity: 0;
+		transition: opacity $modal-transition-speed;
+		@media (min-width: $modal-breakpoint) {
+			left: 50%;
+		}
+	}
+}
+
+.html-modal-content {
+	padding: $modal-space;
+}

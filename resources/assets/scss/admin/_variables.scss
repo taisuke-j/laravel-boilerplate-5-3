@@ -1,0 +1,220 @@
+// --------------------------------------------------------------------------------------------
+// Typography
+// --------------------------------------------------------------------------------------------
+
+// Font families
+$system-font: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif !default;
+$default-font: 'Open Sans', $system-font !default;
+$bold-font:'Open Sans Semibold', $system-font !default;
+$heading-font: 'Open Sans Semibold', $system-font !default;
+$japanese-font: 'Helvetica Neue', Helvetica, Roboto, 'Hiragino Kaku Gothic ProN', Meiryo, Arial, sans-serif !default;
+
+// Font sizes
+$body-font-size: (
+	small: 15px,
+	medium: 15px
+) !default;
+
+$heading-font-size: (
+	h1: (
+		small: 28px,
+		medium: 30px
+	),
+	h2: (
+		small: 26px,
+		medium: 30px
+	),
+	h3: (
+		small: 22px,
+		medium: 24px
+	),
+	h4: (
+		small: 18px,
+		medium: 18px
+	),
+	h5: (
+		small: 14px,
+		medium: 14px
+	),
+	h6: (
+		small: 12px,
+		medium: 12px
+	)
+) !default;
+
+$table-font-size: (
+	small: 14px,
+	medium: 14px
+) !default;
+
+// Font weight
+$bold-font-weight: 'normal';
+$heading-font-weight: 'normal';
+
+// Line height
+$default-line-height: 1.3 !default;
+$content-line-height: 1.7 !default;
+$input-line-height: 1.3 !default;
+
+
+// --------------------------------------------------------------------------------------------
+// Colors
+// --------------------------------------------------------------------------------------------
+
+// Site colors
+
+$blue: (
+	main: #66a1ff,
+	light: #80b0ff,
+	lighter: #b2d0ff,
+	lightest: #e5efff
+) !default;
+
+$purple: (
+	main: #8080ff,
+	light: #9999ff,
+	lighter: #ccccff,
+	lightest: #f2f2ff
+) !default;
+
+$green: (
+	main: #56d66b,
+	light: #73e586,
+	lighter: #a8f0b4,
+	lightest: #e1fae5
+) !default;
+
+$yellow: (
+	main: #ffdd33,
+	light: #ffe566,
+	lighter: #fff2b2,
+	lightest: #fffbe5
+) !default;
+
+$red: (
+	main: #ff6666,
+	light: #ff8080,
+	lighter: #ffb2b2,
+	lightest: #ffe5e5
+) !default;
+
+$primary-color: $blue !default;
+
+
+// Text colors
+$content-color: #666 !default;
+$content-color-light: #999 !default;
+$link-color: #999 !default;
+$link-color-light: #ccc !default;
+$heading-color: #333 !default;
+$heading-color-light: #666 !default;
+$placeholder-color: #999 !default;
+
+// Background colors
+$site-bgc: #fff !default;
+$content-bgc: #fff !default;
+$thead-bgc: #f7f7f7 !default;
+$input-disabled-bgc: #eee !default;
+
+// Border colors
+$content-bdc: #eee !default;
+$table-bdc: #e8e8e8 !default;
+
+// Other colors
+$white: #fff !default;
+
+
+// --------------------------------------------------------------------------------------------
+// Layout
+// --------------------------------------------------------------------------------------------
+
+// Top navigation height
+$top-nav-height: 40px;
+
+// Max site width
+$max-site-width: 1366px !default;
+
+// Breakpoints
+$breakpoint-small: 415px !default;
+$breakpoint-medium: 768px !default;
+$breakpoint-large: 1024px !default;
+$breakpoint-xlarge: 1366px !default;
+$modal-breakpoint: 600px !default;
+
+// Spacing
+$space: 20px !default;
+$space-xsmall: 5px !default;
+$space-small: 10px !default;
+$space-smaller: 15px !default;
+$space-medium: 20px !default;
+$space-larger: 30px !default;
+$space-large: 40px !default;
+$space-xlarge: 60px !default;
+$space-xxlarge: 100px !default;
+
+$small-rate: 0.75 !default;
+
+@function small-space($space:$space, $rate: $small-rate) {
+	@return round($space * $rate);
+}
+
+$responsive-space: (
+	small: (
+		xsmall: small-space($space-xsmall),
+		small: small-space($space-small),
+		smaller: small-space($space-smaller),
+		medium: small-space($space),
+		larger: small-space($space-larger),
+		large: small-space($space-large),
+		xlarge: small-space($space-xlarge),
+		xxlarge: small-space($space-xxlarge),
+	),
+	medium: (
+		xsmall: $space-xsmall,
+		small: $space-small,
+		smaller: $space-smaller,
+		medium: $space-medium,
+		larger: $space-larger,
+		large: $space-large,
+		xlarge: $space-xlarge,
+		xxlarge: $space-xxlarge,
+	),
+) !default;
+
+// Content padding
+$content-padding: (
+	y: (
+		small: 20px,
+		medium: 40px,
+		large: 40px,
+	),
+	x: (
+		small: 20px,
+		medium: 60px,
+		large: 80px,
+	),
+) !default;
+
+// Borders
+$site-border-width: 1px!default;
+$input-border-width: 2px !default;
+
+// Form elements
+$input-width: 200px !default;
+
+// Radius
+$radius: 3px !default;
+
+
+// --------------------------------------------------------------------------------------------
+// Animation
+// --------------------------------------------------------------------------------------------
+
+$transition-speed: .4s !default;
+
+
+// --------------------------------------------------------------------------------------------
+// Selectors
+// --------------------------------------------------------------------------------------------
+
+$input: 'input:not([type="radio"]):not([type="checkbox"]):not([type="button"]):not([type="reset"]):not([type="submit"]):not([type="file"]):not(.mce-textbox):not(.select2-search__field)';

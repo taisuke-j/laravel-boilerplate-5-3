@@ -1,0 +1,29 @@
+# General
+.DS_Store
+.vagrant/
+/.idea
+
+# Configuration
+.env
+Homestead.json
+Homestead.yaml
+
+# Database/Log
+phpliteadmin.config.php
+phpliteadmin.php
+phpMyAdmin/
+/public/storage
+/database/backup
+db_backup.sh
+
+# Build files
+/node_modules
+/public/css
+/public/fonts
+/public/images
+/public/js
+/vendor
+
+# Uploads
+/public/uploads
+/storage/files

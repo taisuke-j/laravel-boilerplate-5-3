@@ -1,0 +1,236 @@
+// --------------------------------------------------------------------------------------------
+// Bare minimum styles (on top of normalize.css)
+// --------------------------------------------------------------------------------------------
+
+// General
+*, *:before, *:after {
+	box-sizing: border-box;
+	.preload & {
+		// Using this with simple Javascript is recommended if there are elements with
+		// CSS transition settings above the fold.
+		// (https://css-tricks.com/transitions-only-after-page-load/)
+		// transition: none !important;
+	}
+}
+
+body {
+	line-height: $default-line-height;
+	background: $site-bgc;
+	color: $content-color;
+	font-family: $default-font;
+	font-size: map-get($body-font-size, 'small');
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	@if $language-support-for-japanese {
+		:lang(ja) & { font-family: $japanese-font; }
+	}
+	@include min-medium {
+		font-size: map-get($body-font-size, 'medium');
+	}
+}
+
+@include placeholder { color: $placeholder-color; }
+
+::selection {
+	background: map-get($primary-color, lighter);
+	color: map-get($primary-color, main);
+}
+
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;
+	margin-bottom: $space-smaller;
+	color: $heading-color;
+	font-family: $heading-font;
+	font-weight: unquote($heading-font-weight);
+	@if $language-support-for-japanese {
+		:lang(ja) & { font-family: $japanese-font; }
+	}
+	a {
+		color: $heading-color;
+		&:hover { color: $heading-color-light; }
+	}
+}
+
+@for $i from 1 to 6 {
+	h#{$i} {
+		@include heading-font-size('h#{$i}', 'small');
+		@include min-medium {
+			@include heading-font-size('h#{$i}');
+		}
+	}
+}
+
+// Inner Elements
+section, .section {
+	margin-bottom: space('small', 'large');
+	&:last-child { margin-bottom: 0; }
+	@include min-medium {
+		margin-bottom: space('medium', 'large');
+	}
+}
+
+p {
+	line-height: $content-line-height;
+	margin-top: 0;
+	margin-bottom: $space;
+	&:last-child { margin-bottom: 0; }
+}
+ul, ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	@include border($color: $table-bdc);
+	border-collapse: collapse;
+	vertical-align: top;
+	font-size: map-get($table-font-size, 'small');
+	.table-wrapper & { width: 100%; }
+	.table-wrapper[class*='even'] & { table-layout: fixed; }
+	@include min-medium {
+		font-size: map-get($table-font-size, 'medium');
+	}
+}
+
+thead {
+	background: $thead-bgc;
+	.table-wrapper[class*='medium'] & {
+		@include max-medium {
+			display: none;
+		}
+	}
+}
+
+tr {
+	.table-wrapper[class*='horizontal'] & {
+		border-top: 1px solid $table-bdc;
+	}
+	.table-wrapper[class*='medium'] & {
+		@include max-medium {
+			border-top: 1px solid $table-bdc;
+		}
+	}
+	.table-wrapper[class*='striped'] &:nth-of-type(2n) {
+		background: $thead-bgc;
+	}
+	.table-wrapper[class*='medium'] &:nth-of-type(2n) {
+		@include max-medium {
+			background: $thead-bgc;
+		}
+	}
+}
+
+td {
+	padding: $space-small $space;
+	@include border($color: $table-bdc);
+	.table-wrapper[class*='horizontal'] & {
+		border: none;
+	}
+	.table-wrapper[class*='medium'] & {
+		@include max-medium {
+			display: block;
+			border: none;
+		}
+	}
+}
+
+th {
+	padding: $space-small $space;
+	@include border($color: $table-bdc);
+	font-family: $bold-font;
+	font-weight: unquote($bold-font-weight);
+	text-align: center;
+	.table-wrapper[class*='horizontal'] & {
+		border: none;
+		text-align: left;
+	}
+	.table-wrapper[class*='medium'] & {
+		@include max-medium {
+			display: block;
+			border: none;
+			text-align: left;
+		}
+	}
+}
+
+.cell-label { color: $heading-color; }
+
+a {
+	color: $link-color;
+	text-decoration: none;
+	transition: color $transition-speed;
+	&:hover {
+		color: $link-color-light;
+	}
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+	transition: opacity $transition-speed;
+	a &:hover { opacity: .7 }
+}
+
+strong, b, .bold {
+	font-family: $bold-font;
+	@if $language-support-for-japanese {
+		:lang(ja) & { font-family: $japanese-font; }
+	}
+	font-weight: unquote($bold-font-weight);
+}
+
+small { font-size: inherit; }
+
+hr {
+	border: none;
+	border-top: solid 2px $content-bdc;
+}
+
+// Form Elements
+#{$input}, textarea, select, button {
+	margin: 0;
+	outline: 0;
+	color: $content-color;
+	font-family: inherit;
+	font-weight: inherit;
+	font-size: inherit;
+	text-transform: none;
+	&[disabled] {
+		cursor: not-allowed;
+	}
+}
+
+#{$input}, textarea {
+	-webkit-appearance: none;
+	opacity: 1;
+	width: $input-width;
+	line-height: $input-line-height;
+	margin-bottom: $space-xsmall;
+	padding: $space-small - $input-border-width $space-small;
+	@include border($input-border-width);
+	&.full-width { width: 100%; }
+	&.border-bottom {
+		border-left: none;
+		border-right: none;
+		border-top-color: transparent;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	&[disabled] { background: $input-disabled-bgc; }
+}
+textarea {
+	height: 200px;
+}
+
+input[type='search']:focus { outline-offset: -2px; }
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration {
+	display: none;
+}
+
+.button {
+	@include button-style;
+}

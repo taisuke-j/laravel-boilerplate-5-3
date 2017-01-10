@@ -1,0 +1,20 @@
+// --------------------------------------------------------------------------------------------
+// Font files import
+// --------------------------------------------------------------------------------------------
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('../fonts/opensans/opensans-regular-webfont.eot');
+	src: url('../fonts/opensans/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/opensans/opensans-regular-webfont.woff') format('woff'),
+		url('../fonts/opensans/opensans-regular-webfont.ttf') format('truetype'),
+		url('../fonts/opensans/opensans-regular-webfont.svg#svgFontName') format('svg');
+}
+@font-face {
+	font-family: 'Open Sans Semibold';
+	src: url('../fonts/opensans/opensans-semibold-webfont.eot');
+	src: url('../fonts/opensans/opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/opensans/opensans-semibold-webfont.woff') format('woff'),
+		url('../fonts/opensans/opensans-semibold-webfont.ttf') format('truetype'),
+		url('../fonts/opensans/opensans-semibold-webfont.svg#svgFontName') format('svg');
+}

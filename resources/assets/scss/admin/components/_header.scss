@@ -1,0 +1,38 @@
+header {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1000;
+	width: 100%;
+	.top-nav {
+		@include clearfix;
+		position: relative;
+		padding: $space-xsmall $space;
+		background: #000;
+		color: #fff;
+	}
+	.header_logo {
+		float: left;
+	}
+	.menu-button {
+		margin-top: $space-xsmall;
+		float: right;
+		font-size: 14px;
+		cursor: pointer;
+		@include min-medium {
+			display: none;
+		}
+		i {
+			display: inline;
+			padding: $space-small $space-small $space-small $space;
+		}
+	}
+	.user-name {
+		margin-top: $space-xsmall;
+		float: right;
+		font-size: 14px;
+		i {
+			margin-right: $space-xsmall;
+		}
+	}
+}
